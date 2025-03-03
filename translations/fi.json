@@ -1,0 +1,22 @@
+{
+    "siteTitle": "HiRight24 OY",
+    "welcome": "Laadukkaat Henkilöstöratkaisut Hotelli- ja Ravintola-alalle",
+    "about": "Meistä",
+    "services": "Palvelut",
+    "leadership": "Johto",
+    "process": "Prosessi",
+    "contact": "Yhteystiedot",
+    "careers": "Ura",
+    "heroText": "Yhdistämme osaajat ja yritykset",
+    "visionTitle": "Visio",
+    "visionText": "Uudistaa hotelli- ja ravintola-alan henkilöstövuokrausta innovatiivisilla ratkaisuilla ja erinomaiseen palveluun.",
+    "fullServiceList": {
+        "cooks": "Kokit",
+        "waitstaff": "Tarjoilijat",
+        "bartenders": "Baarimikot",
+        "cleaners": "Siivoojat"
+    },
+    "address": "Rasinsola 3A 5, 01360 Vantaa, Suomi",
+    "phone": "+358 45 350 3311",
+    "email": "hiright24@gmail.com"
+}

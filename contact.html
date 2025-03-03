@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="contactTitle">HiRight24 OY | Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1 data-i18n="contactHeading">Contact Us</h1>
+        <p data-i18n="contactSubtitle">Get in Touch - We're Here to Help</p>
+        
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="fi">FI</button>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="services.html" data-i18n="navServices">Services</a>
+        <a href="leadership.html" data-i18n="navLeadership">Leadership</a>
+        <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
+        <a href="career.html" data-i18n="navCareer">Career</a>
+        <a href="process.html" data-i18n="navProcess">Process</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3 data-i18n="visitUs">Visit Us</h3>
+                    <p>Rasinsola 3A 5<br>01360 Vantaa, Finland</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3 data-i18n="callUs">Call Us</h3>
+                    <p>+358 45 350 3311</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3 data-i18n="emailUs">Email Us</h3>
+                    <p>hiright24@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2 data-i18n="sendMessage">Send Message</h2>
+                <form 
+                    action="https://formspree.io/f/mnnjelop" 
+                    method="POST"
+                    id="contact-form"
+                >
+                
+                    <div class="form-group">
+                        <label for="name" data-i18n="formName">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="formEmail">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="formMessage">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <input type="text" name="_gotcha" style="display: none;">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> 
+                        <span data-i18n="sendButton">Send Message</span>
+                    </button>
+                </form>
+                <div id="form-status" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-widgets">
+            <a href="https://facebook.com/yourpage" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+                <span data-i18n="socialFacebook">Facebook</span>
+            </a>
+            <a href="https://wa.me/+358453503311" target="_blank" class="social-link">
+                <i class="fab fa-whatsapp"></i>
+                <span data-i18n="socialWhatsapp">WhatsApp</span>
+            </a>
+            <a href="mailto:hiright24@gmail.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+                <span data-i18n="socialEmail">Email</span>
+            </a>
+        </div>
+        
+        <div class="footer-info">
+            <p data-i18n="footerText">© 2024 HiRight24 OY | Partnered with LahiTapiola Insurance</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formStatus.style.color = '#28a745';
+                    formStatus.innerHTML = '✓ Message sent successfully!';
+                    form.reset();
+                } else {
+                    const errorData = await response.json();
+                    formStatus.style.color = '#dc3545';
+                    formStatus.innerHTML = errorData.error || '⚠️ Oops! There was a problem.';
+                }
+            } catch (error) {
+                formStatus.style.color = '#dc3545';
+                formStatus.innerHTML = '⚠️ Network error. Please try again.';
+            } finally {
+                formStatus.style.display = 'block';
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            }
+        });
+    </script>
+
+    <script src="js/translations.js"></script>
+</body>
+</html>

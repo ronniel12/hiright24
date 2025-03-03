@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="careerTitle">Career Opportunities</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/translations.js"></script>
+    <style>
+        .language-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #1a237e;
+        }
+
+        #form-status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .fa-spinner {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="fi">FI</button>
+        </div>
+        <h1 data-i18n="careerHeader">Join Our Team</h1>
+        <p data-i18n="careerSubtitle">Build your career in hospitality</p>
+    </header>
+
+    <nav>
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="services.html" data-i18n="navServices">Services</a>
+        <a href="leadership.html" data-i18n="navLeadership">Leadership</a>
+        <a href="contact.html" data-i18n="navContact">Contact</a>
+        <a href="career.html" data-i18n="navCareer">Career</a>
+        <a href="process.html" data-i18n="navProcess">Process</a>
+    </nav>
+
+    <div class="main-content">
+        <form 
+            id="applicationForm" 
+            class="career-form"
+            action="https://formspree.io/f/xdkaqyjz" 
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <div class="form-group">
+                <label for="fullName" data-i18n="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email" data-i18n="emailLabel">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-i18n="phoneLabel">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="position" data-i18n="positionLabel">Position Applying For</label>
+                <select id="position" name="position" required>
+                    <option value="" data-i18n="selectPosition">Select Position</option>
+                    <option data-i18n="positionChef">Chef</option>
+                    <option data-i18n="positionWaitStaff">Wait Staff</option>
+                    <option data-i18n="positionBartender">Bartender</option>
+                    <option data-i18n="positionCleaner">Cleaner</option>
+                    <option data-i18n="positionFoodProcessor">Food-processor</option>
+                    <option data-i18n="positionHousekeeper">Housekeeper</option>
+                    <option data-i18n="positionReceptionist">Receptionist</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="resume" data-i18n="resumeLabel">Upload Resume (PDF only, max 10MB)</label>
+                <!-- Fix your file input to use name="upload" -->
+                <input type="file" id="resume" name="upload" accept=".pdf" required>
+            </div>
+
+            <input type="text" name="_gotcha" style="display: none;">
+
+            <button type="submit" class="cta-button btn-hover pulse-hover" data-i18n="submitApplication">
+                <i class="fas fa-paper-plane"></i>
+                <span data-i18n="submitApplication">Submit Application</span>
+            </button>
+        </form>
+        <div id="form-status"></div>
+    </div>
+
+    <script>
+        // Translation handling
+        function updateContent(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                    
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        // Language toggle
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const lang = this.dataset.lang;
+                document.documentElement.lang = lang;
+                localStorage.setItem('selectedLang', lang);
+                updateContent(lang);
+            });
+        });
+
+        // Initialize translations
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLang') || 'en';
+            document.documentElement.lang = savedLang;
+            document.querySelector(`.lang-btn[data-lang="${savedLang}"]`).classList.add('active');
+            updateContent(savedLang);
+        });
+
+        // Form Handling
+        const form = document.getElementById('applicationForm');
+        const statusDiv = document.getElementById('form-status');
+        const resumeInput = document.getElementById('resume');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const lang = document.documentElement.lang;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const formData = new FormData(form);
+
+            // File validation
+            if (resumeInput.files[0].size > 10 * 1024 * 1024) {
+                statusDiv.style.color = '#dc3545';
+                statusDiv.textContent = translations[lang].fileTooLarge;
+                statusDiv.style.display = 'block';
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${translations[lang].submitting}`;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    statusDiv.style.color = '#28a745';
+                    statusDiv.textContent = `✓ ${translations[lang].applicationSuccess}`;
+                    form.reset();
+                } else {
+                    const error = await response.json();
+                    statusDiv.style.color = '#dc3545';
+                    statusDiv.textContent = `⚠️ ${error.error || translations[lang].applicationError}`;
+                }
+            } catch (error) {
+                statusDiv.style.color = '#dc3545';
+                statusDiv.textContent = `⚠️ ${translations[lang].networkError}`;
+            } finally {
+                statusDiv.style.display = 'block';
+                submitButton.disabled = false;
+                submitButton.innerHTML = `<i class="fas fa-paper-plane"></i> ${translations[lang].submitApplication}`;
+            }
+        });
+    </script>
+    
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>

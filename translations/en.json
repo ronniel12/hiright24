@@ -1,0 +1,22 @@
+{
+    "siteTitle": "HiRight24 OY",
+    "welcome": "Premium Hospitality Staffing Solutions",
+    "about": "About Us",
+    "services": "Services",
+    "leadership": "Leadership",
+    "process": "Process",
+    "contact": "Contact",
+    "careers": "Careers",
+    "heroText": "Connecting Talent with Excellence",
+    "visionTitle": "Our Vision",
+    "visionText": "To revolutionize hospitality staffing in Finland through innovative workforce solutions and exceptional service quality.",
+    "fullServiceList": {
+        "cooks": "Skilled Cooks",
+        "waitstaff": "Wait Staff",
+        "bartenders": "Bartenders",
+        "cleaners": "Cleaners"
+    },
+    "address": "Rasinsola 3A 5, 01360 Vantaa, Finland",
+    "phone": "+358 45 350 3311",
+    "email": "hiright24@gmail.com"
+}

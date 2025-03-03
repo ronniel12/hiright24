@@ -1,4 +1,4 @@
-/// Merged translations object for all pages
+// Merged translations object for all pages
 const translations = {
     en: {
         // Navigation (shared across all pages)
@@ -47,13 +47,12 @@ const translations = {
         positionReceptionist: "Receptionist",
         resumeLabel: "Upload Resume (PDF only)",
         submitApplication: "Submit Application",
-        applicationSuccess: "Application submitted successfully!",
         submitting: "Submitting...",
         applicationSuccess: "Application submitted successfully!",
         applicationError: "Error submitting application",
         networkError: "Network error - please try again",
         fileTooLarge: "File size exceeds 5MB limit",
-            
+
         // Home Page
         siteTitle: "HiRight24 OY | Home",
         heroTitle: "Your Hospitality Staffing Partner",
@@ -94,17 +93,11 @@ const translations = {
         servicesTitle: "HiRight24 OY | Our Services",
         servicesHeading: "Our Services",
         servicesSubtitle: "Comprehensive Staffing Solutions for Hospitality Industry",
-        serviceCooks: "Skilled Cooks",
         serviceCooksText: "Professional chefs with 5+ years experience in commercial kitchens. Certified in food safety and modern culinary techniques.",
-        serviceWaitstaff: "Wait Staff",
         serviceWaitstaffText: "Trained service professionals for restaurants, hotels, and events. Specializing in high-end customer service.",
-        serviceBartenders: "Bartenders",
         serviceBartendersText: "Expert mixologists with knowledge of classic cocktails and modern mixology. Flair bartending specialists available.",
-        serviceHotelStaff: "Hotel Staff",
         serviceHotelStaffText: "Experienced hospitality professionals trained in front desk operations, housekeeping, and guest services. Committed to excellence, efficiency, and customer satisfaction.",
-        serviceFoodProcessing: "Food Processing",
         serviceFoodProcessingText: "Certified professionals for industrial kitchens and food production facilities. HACCP certified teams available.",
-        serviceCleaners: "Cleaners",
         serviceCleanersText: "Sanitation experts trained in hospitality cleaning standards. Available for daily maintenance and deep cleaning.",
         filterAll: "All",
         filterFood: "Food Services",
@@ -139,7 +132,6 @@ const translations = {
         innovationText: "Implementing cutting-edge workforce management",
         trustedPartners: "Trusted Partners",
         partnerLahiTapiola: "LahiTapiola Insurance",
-
 
         // Contact Page
         contactTitle: "HiRight24 OY | Contact",
@@ -201,13 +193,12 @@ const translations = {
         positionReceptionist: "Vastaanottovirkailija",
         resumeLabel: "Lataa ansioluettelo (vain PDF)",
         submitApplication: "Lähetä hakemus",
-        applicationSuccess: "Hakemus lähetetty onnistuneesti!",
         submitting: "Lähetetään...",
         applicationSuccess: "Hakemus lähetetty onnistuneesti!",
         applicationError: "Virhe hakemuksen lähetyksessä",
         networkError: "Verkkovirhe - yritä uudelleen",
         fileTooLarge: "Tiedoston koko ylittää 5 megatavun rajan",
-            
+
         // Home Page
         siteTitle: "HiRight24 OY | Etusivu",
         heroTitle: "Sinun Henkilöstöratkaisusi Hotelli ja Ravintola-alalle",
@@ -248,17 +239,11 @@ const translations = {
         servicesTitle: "HiRight24 OY | Palvelumme",
         servicesHeading: "Palvelumme",
         servicesSubtitle: "Laajat henkilöstöratkaisut hotelli- ja ravintola-alalle",
-        serviceCooks: "Kokit",
         serviceCooksText: "Ammattikokkeja yli 5 vuoden kokemuksella ravintolakeittiöissä. Hygieniapassi ja modernit ruoanlaittotekniikat.",
-        serviceWaitstaff: "Tarjoilijat",
         serviceWaitstaffText: "Koulutetut palveluammattilaiset ravintoloihin, hotelleihin ja tapahtumiin. Erinomaista asiakaspalvelua.",
-        serviceBartenders: "Baarimikot",
         serviceBartendersText: "Asiantuntevia mixologeja perinteisistä ja moderneista cocktail-tyyleistä. Flair-baarityöntekijöitä saatavilla.",
-        serviceHotelStaff: "Hotellihenkilöstö",
         serviceHotelStaffText: "Kokeneet hotelliammattilaiset vastaanotto-, siivous- ja asiakaspalvelutehtäviin. Sitoutuneita laatuun ja asiakastyytyväisyyteen.",
-        serviceFoodProcessing: "Elintarviketeollisuus",
         serviceFoodProcessingText: "Pätevät ammattilaiset teollisiin keittiöihin ja elintarviketuotantoon. HACCP-sertifioidut tiimit saatavilla.",
-        serviceCleaners: "Siivoojat",
         serviceCleanersText: "Siisteysasiantuntijat hotellialan standardien mukaan. Päivittäiseen siivoukseen ja perusteellisiin siivouksiin.",
         filterAll: "Kaikki",
         filterFood: "Ruokapalvelut",
